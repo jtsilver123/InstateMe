@@ -1,0 +1,6 @@
+<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InstateMe">
+  <path d="M17 5 L31 11.3 L17 17.6 L3 11.3 Z" fill="#D2691E"/>
+  <path d="M7.5 13.6 L7.5 21 C7.5 23.4 11.8 25.4 17 25.4 C22.2 25.4 26.5 23.4 26.5 21 L26.5 13.6 L17 17.9 Z" fill="#A8480F"/>
+  <path d="M31 11.3 L31 19.4" stroke="#D2691E" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="31" cy="20.6" r="1.7" fill="#D2691E"/>
+</svg>
