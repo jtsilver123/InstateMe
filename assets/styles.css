@@ -412,7 +412,7 @@ em{font-style:italic}
 
 /* ---------- Reviews / proof ---------- */
 .reviews__embed{margin-top:2.2rem;min-height:220px}
-.reviews__embed iframe{width:100%;border:0;display:block}
+.reviews__embed iframe{width:100%;border:0;display:block;background:transparent}
 .reviews__link{margin-top:1.4rem;font-size:.95rem}
 .reviews__link a{color:var(--orange);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s}
 .reviews__link a:hover{border-color:var(--orange)}
