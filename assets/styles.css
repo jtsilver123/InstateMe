@@ -365,7 +365,7 @@ em{font-style:italic}
 .moat__cell{background:var(--cream);padding:1.8rem 1.5rem;transition:background .25s}
 .moat__cell:hover{background:var(--paper)}
 .moat__ic{font-family:var(--serif);font-size:1.7rem;color:var(--orange);display:block;margin-bottom:1rem;min-height:1.7rem}
-.moat__cell h4{font-size:1rem;margin-bottom:.5rem}
+.moat__cell h3{font-size:1rem;margin-bottom:.5rem}
 .moat__cell p{font-size:.86rem;color:var(--muted);line-height:1.5}
 
 /* ---------- Tech ---------- */
@@ -391,7 +391,7 @@ em{font-style:italic}
 .risks{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:2.4rem}
 .risk{display:grid;grid-template-columns:1fr 1.4fr;gap:2rem;background:var(--cream);padding:1.8rem clamp(1.4rem,3vw,2.4rem)}
 .section--cream .risk{background:var(--cream)}
-.risk__q h4{font-size:1.2rem;font-family:var(--serif);font-weight:600;margin:.2rem 0 .5rem}
+.risk__q h3{font-size:1.2rem;font-family:var(--serif);font-weight:600;margin:.2rem 0 .5rem}
 .risk__q p{font-size:.9rem;color:var(--muted)}
 .risk__a{border-left:2px solid var(--green);padding-left:1.6rem}
 .risk__a .eyebrow{color:var(--green);margin-bottom:.6rem}
@@ -470,7 +470,12 @@ em{font-style:italic}
 .footer__contact{display:flex;flex-direction:column;gap:.3rem;text-align:right;font-family:var(--mono);font-size:.85rem}
 .footer__contact a{color:var(--orange-bright)}
 .footer__legal{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;
-  font-size:.76rem;color:var(--muted);letter-spacing:.02em}
+  font-size:.76rem;color:#988e81;letter-spacing:.02em}
+
+/* skip link for keyboard users */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--orange);color:#fff;
+  font-weight:600;font-size:.9rem;padding:.7em 1.1em;border-radius:0 0 var(--r) 0}
+.skip-link:focus{left:0}
 
 /* ---------- Floating CTA ---------- */
 .float-cta{position:fixed;bottom:22px;right:22px;z-index:40;background:var(--orange);color:#fff;
@@ -479,10 +484,11 @@ em{font-style:italic}
 .float-cta.show{opacity:1;transform:translateY(0);pointer-events:auto}
 .float-cta:hover{background:var(--orange-bright)}
 
-/* ---------- Reveal animation ---------- */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+/* ---------- Reveal animation (progressive-enhanced: only hides when JS is active) ---------- */
+.reveal{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .reveal{opacity:0;transform:translateY(24px)}
 .reveal.is-in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.bar__fill,.mbar__fill,.brow__bar i{transition:none}}
+@media (prefers-reduced-motion:reduce){.reveal,.js .reveal{opacity:1;transform:none}.bar__fill,.mbar__fill,.brow__bar i{transition:none}}
 
 /* ============================================================
    Responsive

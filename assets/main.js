@@ -219,10 +219,13 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'schip is-on';
+      b.setAttribute('aria-pressed', 'true');
+      b.setAttribute('aria-label', s.k + ' — toggle this state');
       b.innerHTML = s.k + '<small>$' + Math.round(s.base / 1000) + 'K base</small>';
       b.addEventListener('click', function () {
         active[s.k] = !active[s.k];
         b.classList.toggle('is-on', active[s.k]);
+        b.setAttribute('aria-pressed', String(active[s.k]));
         compute();
       });
       chipsWrap.appendChild(b);
@@ -275,10 +278,15 @@
       setFill(marginEl);
     }
 
-    capEl.addEventListener('input', function () {
+    function syncPresets(matchVal) {
       presets.forEach(function (p) {
-        p.classList.toggle('is-on', parseFloat(p.getAttribute('data-cap')) === parseFloat(capEl.value));
+        var on = matchVal !== null && parseFloat(p.getAttribute('data-cap')) === matchVal;
+        p.classList.toggle('is-on', on);
+        p.setAttribute('aria-pressed', String(on));
       });
+    }
+    capEl.addEventListener('input', function () {
+      syncPresets(parseFloat(capEl.value));
       compute();
     });
     marginEl.addEventListener('input', compute);
@@ -286,8 +294,7 @@
     presets.forEach(function (p) {
       p.addEventListener('click', function () {
         capEl.value = p.getAttribute('data-cap');
-        presets.forEach(function (q) { q.classList.remove('is-on'); });
-        p.classList.add('is-on');
+        syncPresets(parseFloat(p.getAttribute('data-cap')));
         compute();
       });
     });

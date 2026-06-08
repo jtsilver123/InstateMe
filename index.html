@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
+<script>document.documentElement.className="js";</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>InstateMe — Acquisition Opportunity</title>
@@ -27,6 +28,7 @@
 <meta name="twitter:title" content="InstateMe — A profitable playbook for in-state tuition" />
 <meta name="twitter:description" content="Tech-enabled services business. Texas-proven. ~$364K SDE. Asking $1.0M — asset sale." />
 <meta name="twitter:image" content="https://buy.instateme.com/assets/og-image.png" />
+<meta name="twitter:image:alt" content="InstateMe — A profitable playbook for in-state tuition. $389K revenue, $364K SDE, asking $1.0M." />
 
 <!-- Icons -->
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -40,6 +42,7 @@
 <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+<a href="#top" class="skip-link">Skip to content</a>
 
 <!-- ░░ Confidential ticker ░░ -->
 <div class="ticker" aria-hidden="true">
@@ -325,9 +328,9 @@
           <div class="ctrl__head"><span>Market capture</span><span class="ctrl__val" id="capVal">2.0%</span></div>
           <input type="range" id="capture" min="0.25" max="5" step="0.05" value="2" aria-label="Market capture rate" />
           <div class="ctrl__presets">
-            <button type="button" class="preset" data-cap="0.5">Conservative · 0.5%</button>
-            <button type="button" class="preset is-on" data-cap="2">Base · 2%</button>
-            <button type="button" class="preset" data-cap="5">Aggressive · 5%</button>
+            <button type="button" class="preset" data-cap="0.5" aria-pressed="false">Conservative · 0.5%</button>
+            <button type="button" class="preset is-on" data-cap="2" aria-pressed="true">Base · 2%</button>
+            <button type="button" class="preset" data-cap="5" aria-pressed="false">Aggressive · 5%</button>
           </div>
           <p class="ctrl__hint">Share of each school's incoming out-of-state freshmen you classify each year.</p>
         </div>
@@ -352,7 +355,7 @@
       <div class="calc__out">
         <div class="payback">
           <span class="payback__lbl">Payback on the $1,000,000 ask</span>
-          <span class="payback__num" id="paybackNum">≈ 6 months</span>
+          <span class="payback__num" id="paybackNum" aria-live="polite" aria-atomic="true">≈ 6 months</span>
           <div class="payback__meter"><span class="payback__bar" id="paybackBar"></span></div>
           <div class="payback__scale"><span>0</span><span>12 mo</span><span>24 mo</span></div>
           <span class="payback__sub" id="paybackSub">of steady-state cash flow recoups the entire purchase price</span>
@@ -362,8 +365,8 @@
           <div class="ostat"><span class="ostat__n" id="oRev">$2.60M</span><span class="ostat__l">Annual revenue · run-rate</span></div>
           <div class="ostat"><span class="ostat__n" id="oProfit">$2.03M</span><span class="ostat__l">Annual cash flow</span></div>
           <div class="ostat"><span class="ostat__n" id="oStudents">359</span><span class="ostat__l">New students / year</span></div>
-          <div class="ostat"><span class="ostat__n" id="oCum">$9.7M</span><span class="ostat__l">5-yr cumulative revenue<sup>*</sup></span></div>
-          <div class="ostat ostat--wide"><span class="ostat__n" id="oSaved">$14.0M</span><span class="ostat__l">Tuition saved for families every year</span></div>
+          <div class="ostat"><span class="ostat__n" id="oCum">$9.74M</span><span class="ostat__l">5-yr cumulative revenue<sup>*</sup></span></div>
+          <div class="ostat ostat--wide"><span class="ostat__n" id="oSaved">$14.00M</span><span class="ostat__l">Tuition saved for families every year</span></div>
         </div>
         <p class="calc__foot"><sup>*</sup> Cumulative assumes a standard ramp up to your chosen capture over ~3 years; the run-rate figures above are steady-state.</p>
       </div>
@@ -412,14 +415,14 @@
     <p class="eyebrow">The moat</p>
     <h2 class="display">A competitor can't copy <em class="g">seven years of scar tissue.</em></h2>
     <div class="moat">
-      <div class="moat__cell"><span class="moat__ic">®</span><h4>Trademark</h4><p>InstateMe™ is a federally registered USPTO mark. Transfers clean to the buyer.</p></div>
-      <div class="moat__cell"><span class="moat__ic">86</span><h4>Classifications</h4><p>A track record of successful classifications — a moat of codified, hard-won case knowledge.</p></div>
-      <div class="moat__cell"><span class="moat__ic">10/10</span><h4>Recommendation</h4><p>Video testimonials published. Families refer families — 25–30% of new business.</p></div>
-      <div class="moat__cell"><span class="moat__ic">★</span><h4>Press</h4><p>U.S. News &amp; World Report · Austin Business Journal · KUT · UT McCombs Venture Labs.</p></div>
-      <div class="moat__cell"><span class="moat__ic">$43</span><h4>CAC channel</h4><p>Outbound email + direct mail at public-records cost. Defensible, low-cost, hard to copy.</p></div>
-      <div class="moat__cell"><span class="moat__ic">⎔</span><h4>State-agnostic platform</h4><p>Rules are configuration, not code. Built 2025. Fully-owned IP; signed contractor assignments.</p></div>
-      <div class="moat__cell"><span class="moat__ic">→</span><h4>Codified playbook</h4><p>Every state's filings, forms, timing windows and failure modes live inside the platform.</p></div>
-      <div class="moat__cell"><span class="moat__ic">◎</span><h4>Clean legal stack</h4><p>TX LLC, S-corp election, domain, contracts — zero litigation, zero key-person risk.</p></div>
+      <div class="moat__cell"><span class="moat__ic">®</span><h3>Trademark</h3><p>InstateMe™ is a federally registered USPTO mark. Transfers clean to the buyer.</p></div>
+      <div class="moat__cell"><span class="moat__ic">86</span><h3>Classifications</h3><p>A track record of successful classifications — a moat of codified, hard-won case knowledge.</p></div>
+      <div class="moat__cell"><span class="moat__ic">10/10</span><h3>Recommendation</h3><p>Video testimonials published. Families refer families — 25–30% of new business.</p></div>
+      <div class="moat__cell"><span class="moat__ic">★</span><h3>Press</h3><p>U.S. News &amp; World Report · Austin Business Journal · KUT · UT McCombs Venture Labs.</p></div>
+      <div class="moat__cell"><span class="moat__ic">$43</span><h3>CAC channel</h3><p>Outbound email + direct mail at public-records cost. Defensible, low-cost, hard to copy.</p></div>
+      <div class="moat__cell"><span class="moat__ic">⎔</span><h3>State-agnostic platform</h3><p>Rules are configuration, not code. Built 2025. Fully-owned IP; signed contractor assignments.</p></div>
+      <div class="moat__cell"><span class="moat__ic">→</span><h3>Codified playbook</h3><p>Every state's filings, forms, timing windows and failure modes live inside the platform.</p></div>
+      <div class="moat__cell"><span class="moat__ic">◎</span><h3>Clean legal stack</h3><p>TX LLC, S-corp election, domain, contracts — zero litigation, zero key-person risk.</p></div>
     </div>
   </div>
 </section>
@@ -459,10 +462,10 @@
     <p class="eyebrow">Risks &amp; mitigants</p>
     <h2 class="display">What a buyer should ask about. <em class="g">And what the answer is.</em></h2>
     <div class="risks">
-      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · sole operator</span><h4>Key-person dependency</h4><p>The business runs on one owner today.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>A few hours a week, SOPs documented, 60–90 day transition with optional consulting. Replacement is a part-time ops hire, not a successor.</p></div></div>
-      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · single state</span><h4>Revenue concentration in Texas</h4><p>100% of 2025 revenue from one state.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>The platform is state-agnostic and the six-state expansion is demand-validated. Concentration is a stage, not a structural cap.</p></div></div>
-      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · one-time revenue</span><h4>No recurring contract</h4><p>Each student is a one-time engagement.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>~16,700 OOS freshmen a year are a renewable top-of-funnel. Growth is an acquisition problem, not a retention one — and paid media is untapped.</p></div></div>
-      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · regulatory</span><h4>State residency rules</h4><p>Rules could tighten over time.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>It's a compliance-guidance service operating within existing state rules. Changes tend to be incremental and pre-announced; the business has already adapted to tightening without a material hit.</p></div></div>
+      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · sole operator</span><h3>Key-person dependency</h3><p>The business runs on one owner today.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>A few hours a week, SOPs documented, 60–90 day transition with optional consulting. Replacement is a part-time ops hire, not a successor.</p></div></div>
+      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · single state</span><h3>Revenue concentration in Texas</h3><p>100% of 2025 revenue from one state.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>The platform is state-agnostic and the six-state expansion is demand-validated. Concentration is a stage, not a structural cap.</p></div></div>
+      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · one-time revenue</span><h3>No recurring contract</h3><p>Each student is a one-time engagement.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>~16,700 OOS freshmen a year are a renewable top-of-funnel. Growth is an acquisition problem, not a retention one — and paid media is untapped.</p></div></div>
+      <div class="risk"><div class="risk__q"><span class="eyebrow eyebrow--orange">Risk · regulatory</span><h3>State residency rules</h3><p>Rules could tighten over time.</p></div><div class="risk__a"><span class="eyebrow">Mitigant</span><p>It's a compliance-guidance service operating within existing state rules. Changes tend to be incremental and pre-announced; the business has already adapted to tightening without a material hit.</p></div></div>
     </div>
   </div>
 </section>
