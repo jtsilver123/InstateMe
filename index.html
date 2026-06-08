@@ -64,6 +64,7 @@
       <a href="#expansion">Expansion</a>
       <a href="#calculator">Calculator</a>
       <a href="#moat">Moat</a>
+      <a href="#reviews">Reviews</a>
       <a href="#ask">The Ask</a>
     </nav>
     <a href="#access" class="btn btn--solid nav__cta">Request access</a>
@@ -77,6 +78,7 @@
     <a href="#expansion">Expansion</a>
     <a href="#calculator">Calculator</a>
     <a href="#moat">Moat</a>
+    <a href="#reviews">Reviews</a>
     <a href="#ask">The Ask</a>
     <a href="#access" class="btn btn--solid">Request access</a>
   </div>
@@ -501,6 +503,19 @@
   </div>
 </section>
 
+<!-- ░░ Proof / reviews ░░ -->
+<section class="section section--cream" id="reviews">
+  <div class="container">
+    <p class="eyebrow">Proof · customer reviews</p>
+    <h2 class="display">Families don't just finish. <em class="g">They refer.</em></h2>
+    <p class="lede">A 10/10 recommendation score, two refunds across 86 classifications, and 25–30% of new business from word of mouth — the brand equity you're acquiring, in customers' own words.</p>
+    <div class="reviews__embed">
+      <iframe id="testimonialto-00ea889a-7ac5-490e-b87c-8b2afe2b5e0b" src="https://embed-v2.testimonial.to/w/instateme?id=00ea889a-7ac5-490e-b87c-8b2afe2b5e0b" frameborder="0" scrolling="no" width="100%" loading="lazy" title="InstateMe customer reviews"></iframe>
+    </div>
+    <p class="reviews__link"><a href="https://www.instateme.com/reviews" target="_blank" rel="noopener">See every review at instateme.com/reviews →</a></p>
+  </div>
+</section>
+
 <!-- ░░ The Ask ░░ -->
 <section class="section section--dark" id="ask">
   <div class="container">
@@ -578,6 +593,21 @@
 </footer>
 
 <a href="#access" class="float-cta" id="floatCta">Request access →</a>
+
+<!-- testimonial.to widget: loaded non-blocking, with graceful fallback link above -->
+<script>
+(function () {
+  var id = '#testimonialto-00ea889a-7ac5-490e-b87c-8b2afe2b5e0b';
+  if (!document.querySelector(id)) return;
+  var s = document.createElement('script');
+  s.src = 'https://testimonial.to/js/iframeResizer.min.js';
+  s.async = true;
+  s.onload = function () {
+    if (window.iFrameResize) { try { iFrameResize({ log: false, checkOrigin: false }, id); } catch (e) {} }
+  };
+  document.body.appendChild(s);
+})();
+</script>
 
 <script src="assets/main.js"></script>
 </body>

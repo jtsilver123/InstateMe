@@ -410,6 +410,13 @@ em{font-style:italic}
 .buyer--accent p,.buyer--accent .buyer__seg{color:var(--muted-light)}
 .buyer--accent .buyer__seg{color:#d8cfc3}
 
+/* ---------- Reviews / proof ---------- */
+.reviews__embed{margin-top:2.2rem;min-height:220px}
+.reviews__embed iframe{width:100%;border:0;display:block}
+.reviews__link{margin-top:1.4rem;font-size:.95rem}
+.reviews__link a{color:var(--orange);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s}
+.reviews__link a:hover{border-color:var(--orange)}
+
 /* ---------- The Ask ---------- */
 .ask__title{margin-bottom:1.4em}
 .ask{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
