@@ -1,0 +1,14 @@
+{
+  "name": "instateme-acquisition-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Buyer-facing acquisition microsite for InstateMe.",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}

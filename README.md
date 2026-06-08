@@ -9,15 +9,35 @@ of linking to any shared folder.
 ## Files
 
 ```
-index.html          # the whole page
+index.html           # the whole page
+src/main.ts          # TypeScript source — sticky nav, mobile menu, scroll reveals,
+                     #   animated bars, request form, market-opportunity calculator
+assets/main.js       # COMPILED from src/main.ts (this is what the page loads — do not edit by hand)
 assets/styles.css    # brand styling (orange · cream · forest green · ink)
-assets/main.js       # sticky nav, mobile menu, scroll reveals, animated bars, request form
 assets/logo.svg      # mortarboard wordmark
 assets/favicon.svg
+tsconfig.json        # strict TypeScript config (compiles src → assets)
+package.json         # build scripts + the TypeScript dev dependency
 ```
 
-No build step, no dependencies. Fonts load from Google Fonts (Playfair Display,
-Inter, Space Mono).
+The deployed site is plain static HTML/CSS/JS — **no build step is needed to
+host it**. The only build is compiling the TypeScript source to `assets/main.js`,
+which is committed so any static host serves it directly.
+
+## Development (TypeScript)
+
+The interactive script is written in **strict TypeScript** (`src/main.ts`) and
+compiled to `assets/main.js`.
+
+```bash
+npm install        # one-time: installs the TypeScript compiler
+npm run build      # compile src/main.ts → assets/main.js
+npm run watch      # recompile on save while developing
+npm run typecheck  # strict type-check only (no emit)
+```
+
+After editing `src/main.ts`, run `npm run build` and commit the regenerated
+`assets/main.js` along with it. Never edit `assets/main.js` directly.
 
 ## Run locally
 
