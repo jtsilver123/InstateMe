@@ -510,7 +510,9 @@
     <h2 class="display">Families don't just finish. <em class="g">They refer.</em></h2>
     <p class="lede">A 10/10 recommendation score, two refunds across 86 classifications, and 25–30% of new business from word of mouth — the brand equity you're acquiring, in customers' own words.</p>
     <div class="reviews__embed">
-      <iframe id="testimonialto-42438543-4854-4cf3-9cee-9288fae039fd" src="https://embed-v2.testimonial.to/w/instateme?id=42438543-4854-4cf3-9cee-9288fae039fd" frameborder="0" scrolling="no" width="100%" loading="lazy" title="InstateMe customer reviews"></iframe>
+      <script type="text/javascript" src="https://testimonial.to/js/iframeResizer.min.js"></script>
+      <iframe id="testimonialto-42438543-4854-4cf3-9cee-9288fae039fd" src="https://embed-v2.testimonial.to/w/instateme?id=42438543-4854-4cf3-9cee-9288fae039fd" frameborder="0" scrolling="no" width="100%" title="InstateMe customer reviews"></iframe>
+      <script type="text/javascript">iFrameResize({log: false, checkOrigin: false}, '#testimonialto-42438543-4854-4cf3-9cee-9288fae039fd');</script>
     </div>
     <p class="reviews__link"><a href="https://www.instateme.com/reviews" target="_blank" rel="noopener">See every review at instateme.com/reviews →</a></p>
   </div>
@@ -593,21 +595,6 @@
 </footer>
 
 <a href="#access" class="float-cta" id="floatCta">Request access →</a>
-
-<!-- testimonial.to widget: loaded non-blocking, with graceful fallback link above -->
-<script>
-(function () {
-  var id = '#testimonialto-42438543-4854-4cf3-9cee-9288fae039fd';
-  if (!document.querySelector(id)) return;
-  var s = document.createElement('script');
-  s.src = 'https://testimonial.to/js/iframeResizer.min.js';
-  s.async = true;
-  s.onload = function () {
-    if (window.iFrameResize) { try { iFrameResize({ log: false, checkOrigin: false }, id); } catch (e) {} }
-  };
-  document.body.appendChild(s);
-})();
-</script>
 
 <script src="assets/main.js"></script>
 </body>
