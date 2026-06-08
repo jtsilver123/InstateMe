@@ -41,6 +41,20 @@
     });
   }
 
+  /* ---- On mobile, "Request access" jumps to the form, not the section heading ---- */
+  document.querySelectorAll('a[href="#access"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (window.innerWidth <= 860) {
+        var formEl = document.getElementById('reqform');
+        if (formEl) {
+          e.preventDefault();
+          formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (history.replaceState) history.replaceState(null, '', '#access');
+        }
+      }
+    });
+  });
+
   /* ---- Reveal-on-scroll + trigger bar/chart fills ---- */
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var revealTargets = document.querySelectorAll(
@@ -166,6 +180,118 @@
     });
   }
 
-  /* ---- Footer year (if needed elsewhere) ---- */
-  // no-op placeholder for future analytics hook
+  /* ---- Market opportunity calculator ---- */
+  (function () {
+    var capEl = document.getElementById('capture');
+    if (!capEl) return;
+    var marginEl = document.getElementById('margin');
+    var txEl = document.getElementById('txBase');
+    var chipsWrap = document.getElementById('stateChips');
+    var presets = document.querySelectorAll('.preset');
+    var PRICE = 1000000;
+
+    // Per-state model (from the market-sizing workbook): freshmen/yr, fee = one-semester gap, net savings/student.
+    var STATES = [
+      { k: 'AR', fr: 3565.0192, fee: 8114.59, net: 48687.56, base: 578574 },
+      { k: 'UT', fr: 4504.8076, fee: 8668.17, net: 43340.87, base: 780969 },
+      { k: 'NV', fr: 2469.4512, fee: 8076.82, net: 40384.10, base: 398906 },
+      { k: 'NM', fr: 1661.494,  fee: 7919.05, net: 39595.24, base: 263149 },
+      { k: 'ND', fr: 2849.6947, fee: 2275.11, net: 11375.55, base: 129667 },
+      { k: 'SD', fr: 1683.6535, fee: 1721.86, net: 8609.30,  base: 57980  }
+    ];
+    var TX = { rev: 389000, students: 24, saved: 24 * 99000 };
+    var active = {};
+    STATES.forEach(function (s) { active[s.k] = true; });
+
+    function fmtMoney(n) {
+      if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
+      if (n >= 1e3) return '$' + Math.round(n / 1e3) + 'K';
+      return '$' + Math.round(n);
+    }
+    function setFill(el) {
+      var pct = (el.value - el.min) / (el.max - el.min) * 100;
+      el.style.setProperty('--fill', pct + '%');
+    }
+    function $(id) { return document.getElementById(id); }
+
+    // Build state chips
+    STATES.forEach(function (s) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'schip is-on';
+      b.innerHTML = s.k + '<small>$' + Math.round(s.base / 1000) + 'K base</small>';
+      b.addEventListener('click', function () {
+        active[s.k] = !active[s.k];
+        b.classList.toggle('is-on', active[s.k]);
+        compute();
+      });
+      chipsWrap.appendChild(b);
+    });
+
+    function compute() {
+      var cap = parseFloat(capEl.value) / 100;
+      var margin = parseInt(marginEl.value, 10) / 100;
+      var includeTX = txEl.checked;
+
+      var revenue = 0, students = 0, saved = 0, n = 0;
+      STATES.forEach(function (s) {
+        if (!active[s.k]) return;
+        n++;
+        var st = s.fr * cap;
+        students += st;
+        revenue += st * s.fee;
+        saved += st * s.net;
+      });
+      if (includeTX) { revenue += TX.rev; students += TX.students; saved += TX.saved; }
+
+      var profit = revenue * margin;
+      var months = profit > 0 ? PRICE / profit * 12 : Infinity;
+      var cumulative = revenue * 3.75; // ramped to steady state over ~3 years
+
+      $('capVal').textContent = parseFloat(capEl.value) + '%';
+      $('marginVal').textContent = marginEl.value + '%';
+      $('stateCount').textContent = n + ' of 6';
+      $('oRev').textContent = fmtMoney(revenue);
+      $('oProfit').textContent = fmtMoney(profit);
+      $('oStudents').textContent = Math.round(students).toLocaleString();
+      $('oCum').textContent = fmtMoney(cumulative);
+      $('oSaved').textContent = fmtMoney(saved);
+
+      var numEl = $('paybackNum'), subEl = $('paybackSub'), bar = $('paybackBar');
+      if (profit <= 0) {
+        numEl.textContent = '—';
+        subEl.textContent = 'add a state or include Texas to begin';
+        bar.style.width = '0%';
+      } else {
+        var label;
+        if (months < 1) label = '< 1 month';
+        else if (months <= 24) label = '≈ ' + Math.round(months) + ' months';
+        else label = '≈ ' + (months / 12).toFixed(1) + ' years';
+        numEl.textContent = label;
+        subEl.textContent = 'of steady-state cash flow recoups the entire purchase price';
+        bar.style.width = Math.max(4, Math.min(100, (24 - months) / 24 * 100)) + '%';
+      }
+      setFill(capEl);
+      setFill(marginEl);
+    }
+
+    capEl.addEventListener('input', function () {
+      presets.forEach(function (p) {
+        p.classList.toggle('is-on', parseFloat(p.getAttribute('data-cap')) === parseFloat(capEl.value));
+      });
+      compute();
+    });
+    marginEl.addEventListener('input', compute);
+    txEl.addEventListener('change', compute);
+    presets.forEach(function (p) {
+      p.addEventListener('click', function () {
+        capEl.value = p.getAttribute('data-cap');
+        presets.forEach(function (q) { q.classList.remove('is-on'); });
+        p.classList.add('is-on');
+        compute();
+      });
+    });
+
+    compute();
+  })();
 })();

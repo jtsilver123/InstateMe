@@ -59,6 +59,7 @@
       <a href="#business">Business</a>
       <a href="#financials">Financials</a>
       <a href="#expansion">Expansion</a>
+      <a href="#calculator">Calculator</a>
       <a href="#moat">Moat</a>
       <a href="#ask">The Ask</a>
     </nav>
@@ -71,6 +72,7 @@
     <a href="#business">Business</a>
     <a href="#financials">Financials</a>
     <a href="#expansion">Expansion</a>
+    <a href="#calculator">Calculator</a>
     <a href="#moat">Moat</a>
     <a href="#ask">The Ask</a>
     <a href="#access" class="btn btn--solid">Request access</a>
@@ -306,6 +308,72 @@
         <div class="cum cum--accent"><span class="cum__lbl">5-yr cumulative · Base (2%)</span><span class="cum__v">$11.6M</span></div>
         <div class="cum cum--ink"><span class="cum__lbl">5-yr cumulative · Aggressive (5%)</span><span class="cum__v">$18.2M</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ Market opportunity calculator ░░ -->
+<section class="section" id="calculator">
+  <div class="container">
+    <p class="eyebrow">Market opportunity · live calculator</p>
+    <h2 class="display">Run the numbers yourself. <em class="g">Watch the $1M pay back.</em></h2>
+    <p class="lede calc__intro">Six states, thirty public universities, ~16,700 new out-of-state freshmen every single year — a renewable top-of-funnel. Move the sliders: every figure updates live, including how fast the $1,000,000 asking price comes back to you.</p>
+
+    <div class="calc">
+      <div class="calc__controls">
+        <div class="ctrl">
+          <div class="ctrl__head"><span>Market capture</span><span class="ctrl__val" id="capVal">2.0%</span></div>
+          <input type="range" id="capture" min="0.25" max="5" step="0.05" value="2" aria-label="Market capture rate" />
+          <div class="ctrl__presets">
+            <button type="button" class="preset" data-cap="0.5">Conservative · 0.5%</button>
+            <button type="button" class="preset is-on" data-cap="2">Base · 2%</button>
+            <button type="button" class="preset" data-cap="5">Aggressive · 5%</button>
+          </div>
+          <p class="ctrl__hint">Share of each school's incoming out-of-state freshmen you classify each year.</p>
+        </div>
+
+        <div class="ctrl">
+          <div class="ctrl__head"><span>Expansion states</span><span class="ctrl__val" id="stateCount">6 of 6</span></div>
+          <div class="calc__states" id="stateChips"></div>
+          <p class="ctrl__hint">Tap to add or remove a state. Each is incremental to Texas.</p>
+        </div>
+
+        <div class="ctrl">
+          <label class="switch"><input type="checkbox" id="txBase" checked /><span class="switch__track"></span><span class="switch__lbl">Include today's Texas business <b>(+$389K)</b></span></label>
+        </div>
+
+        <div class="ctrl">
+          <div class="ctrl__head"><span>Profit margin</span><span class="ctrl__val" id="marginVal">78%</span></div>
+          <input type="range" id="margin" min="60" max="85" step="1" value="78" aria-label="Profit margin" />
+          <p class="ctrl__hint">Cash kept after costs. The business runs at 73–80% today.</p>
+        </div>
+      </div>
+
+      <div class="calc__out">
+        <div class="payback">
+          <span class="payback__lbl">Payback on the $1,000,000 ask</span>
+          <span class="payback__num" id="paybackNum">≈ 6 months</span>
+          <div class="payback__meter"><span class="payback__bar" id="paybackBar"></span></div>
+          <div class="payback__scale"><span>0</span><span>12 mo</span><span>24 mo</span></div>
+          <span class="payback__sub" id="paybackSub">of steady-state cash flow recoups the entire purchase price</span>
+        </div>
+
+        <div class="calc__grid">
+          <div class="ostat"><span class="ostat__n" id="oRev">$2.60M</span><span class="ostat__l">Annual revenue · run-rate</span></div>
+          <div class="ostat"><span class="ostat__n" id="oProfit">$2.03M</span><span class="ostat__l">Annual cash flow</span></div>
+          <div class="ostat"><span class="ostat__n" id="oStudents">359</span><span class="ostat__l">New students / year</span></div>
+          <div class="ostat"><span class="ostat__n" id="oCum">$9.7M</span><span class="ostat__l">5-yr cumulative revenue<sup>*</sup></span></div>
+          <div class="ostat ostat--wide"><span class="ostat__n" id="oSaved">$14.0M</span><span class="ostat__l">Tuition saved for families every year</span></div>
+        </div>
+        <p class="calc__foot"><sup>*</sup> Cumulative assumes a standard ramp up to your chosen capture over ~3 years; the run-rate figures above are steady-state.</p>
+      </div>
+    </div>
+
+    <div class="calc__tam">
+      <div class="tamcell"><span class="tamcell__n">30</span><span class="tamcell__l">target universities</span></div>
+      <div class="tamcell"><span class="tamcell__n">~16,700</span><span class="tamcell__l">new OOS freshmen / year</span></div>
+      <div class="tamcell tamcell--hl"><span class="tamcell__n">$110M+</span><span class="tamcell__l">annual fees at full penetration</span></div>
+      <div class="tamcell"><span class="tamcell__n">$8.5M</span><span class="tamcell__l">already delivered in Texas</span></div>
     </div>
   </div>
 </section>
