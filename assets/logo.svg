@@ -1,6 +1,11 @@
-<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InstateMe">
-  <path d="M17 5 L31 11.3 L17 17.6 L3 11.3 Z" fill="#D2691E"/>
-  <path d="M7.5 13.6 L7.5 21 C7.5 23.4 11.8 25.4 17 25.4 C22.2 25.4 26.5 23.4 26.5 21 L26.5 13.6 L17 17.9 Z" fill="#A8480F"/>
-  <path d="M31 11.3 L31 19.4" stroke="#D2691E" stroke-width="1.6" stroke-linecap="round"/>
-  <circle cx="31" cy="20.6" r="1.7" fill="#D2691E"/>
+<svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="InstateMe">
+  <!-- cap body / teardrop -->
+  <path d="M11 18 C11 30 15 37 24 41 C33 37 37 30 37 18 Z" fill="#DD6B2E"/>
+  <!-- mortarboard -->
+  <path d="M24 8 L43 16 L24 24 L5 16 Z" fill="#E8824A"/>
+  <!-- S swoosh -->
+  <path d="M16.5 15.2 C20 12.6 22 13.4 24 15.2 C26 17 28 17.8 31.5 15.6" stroke="#FAEDE1" stroke-width="1.6" stroke-linecap="round" opacity=".9"/>
+  <!-- tassel -->
+  <path d="M41 16.6 L41 29" stroke="#C75B2C" stroke-width="1.9" stroke-linecap="round"/>
+  <circle cx="41" cy="31" r="2.3" fill="#C75B2C"/>
 </svg>

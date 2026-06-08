@@ -86,11 +86,39 @@
     counters.forEach(function (el) { co.observe(el); });
   }
 
-  /* ---- Request-access form → composes an email to Jake (no backend) ---- */
+  /* ---- Request-access form → emails jsilver@instateme.com (FormSubmit AJAX) ---- */
   var form = document.getElementById('reqform');
   if (form) {
+    // POSTs to FormSubmit, which forwards the submission as an email.
+    var ENDPOINT = 'https://formsubmit.co/ajax/jsilver@instateme.com';
+    var statusEl = document.getElementById('reqStatus');
+    var submitBtn = document.getElementById('reqSubmit');
+
+    function setStatus(kind, msg) {
+      if (!statusEl) return;
+      statusEl.hidden = !msg;
+      statusEl.textContent = msg || '';
+      statusEl.className = 'reqform__status' + (kind ? ' ' + kind : '');
+    }
+
+    function mailtoFallback(name, email, thesis, pof) {
+      var subject = 'InstateMe — Data room request (' + name + ')';
+      var body =
+        'Name: ' + name + '\nEmail: ' + email +
+        '\nProof of funds: ' + pof +
+        '\n\nAcquisition thesis:\n' + (thesis || '(to discuss on a call)');
+      window.location.href =
+        'mailto:jsilver@instateme.com?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      // Honeypot — silently drop bots.
+      var honey = form.elements['_honey'];
+      if (honey && honey.value) return;
+
       var data = new FormData(form);
       var name = (data.get('name') || '').toString().trim();
       var email = (data.get('email') || '').toString().trim();
@@ -98,25 +126,43 @@
       var pof = data.get('pof') ? 'Yes' : 'Not indicated';
 
       if (!name || !email) {
-        form.querySelector('input[name="' + (name ? 'email' : 'name') + '"]').focus();
+        var miss = form.querySelector('input[name="' + (name ? 'email' : 'name') + '"]');
+        if (miss) miss.focus();
         return;
       }
 
-      var subject = 'InstateMe — Data room request (' + name + ')';
-      var body =
-        'Hi Jake,\n\n' +
-        'I\'d like to request the InstateMe data room and NDA.\n\n' +
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Proof of funds / committed capital: ' + pof + '\n\n' +
-        'Acquisition thesis:\n' + (thesis || '(to discuss on a call)') + '\n\n' +
-        'Thanks,\n' + name;
+      var orig = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+      setStatus('', '');
 
-      window.location.href =
-        'mailto:jsilver@instateme.com?subject=' +
-        encodeURIComponent(subject) +
-        '&body=' +
-        encodeURIComponent(body);
+      var payload = {
+        name: name,
+        email: email,
+        'Acquisition thesis': thesis || '(to discuss on a call)',
+        'Proof of funds': pof,
+        _subject: 'InstateMe data-room request — ' + name,
+        _template: 'table',
+        _captcha: 'false'
+      };
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.ok ? r.json().catch(function(){return {};}) : Promise.reject(r); })
+        .then(function () {
+          form.reset();
+          setStatus('ok', 'Thanks — your request is in. Jake will reply within 24 hours.');
+        })
+        .catch(function () {
+          // If the request fails, fall back to the buyer's email client so nothing is lost.
+          setStatus('err', 'Opening your email app to send this directly…');
+          mailtoFallback(name, email, thesis, pof);
+        })
+        .then(function () {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = orig; }
+        });
     });
   }
 

@@ -386,6 +386,10 @@ em{font-style:italic}
 .reqform textarea{resize:vertical}
 .reqform__check{flex-direction:row!important;align-items:center;gap:.6rem;text-transform:none;letter-spacing:0;color:var(--muted-light);font-size:.9rem}
 .reqform__check input{width:18px;height:18px;accent-color:var(--orange)}
+.reqform__honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.reqform__status{font-size:.9rem;text-align:center;padding:.7rem .8rem;border-radius:var(--r);margin:0}
+.reqform__status.ok{color:#9bd6b0;background:rgba(47,74,58,.35);border:1px solid rgba(123,174,142,.4)}
+.reqform__status.err{color:#eaa581;background:rgba(200,90,41,.16);border:1px solid rgba(221,107,30,.4)}
 .reqform__fine{font-size:.78rem;color:var(--muted);text-align:center}
 .access__one{text-align:center;margin-top:3rem;font-size:1.05rem;color:var(--muted)}
 .access__one em{color:var(--green);font-family:var(--serif);font-size:1.2rem}
