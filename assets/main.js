@@ -9,36 +9,57 @@
     const mobileMenu = byId('mobileMenu');
     const floatCta = byId('floatCta');
     const hero = byId('hero');
-    /* ---- Sticky nav state (solid background once past the hero top) ---- */
-    function onScroll() {
-        const y = window.scrollY || window.pageYOffset;
+    const accessEl = byId('access');
+    /* ---- Sticky nav + floating CTA (rAF-throttled; layout measured only on load/resize) ---- */
+    let heroBottom = 600;
+    let accessTop = Infinity;
+    let ticking = false;
+    function measure() {
+        heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 600;
+        accessTop = accessEl ? accessEl.offsetTop - window.innerHeight : Infinity;
+    }
+    function applyScroll() {
+        const y = window.scrollY;
         if (nav)
             nav.classList.toggle('is-stuck', y > 40);
-        // Floating CTA appears after the hero, hides near the access form
-        const access = byId('access');
-        const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 600;
-        const accessTop = access ? access.offsetTop - window.innerHeight : Infinity;
         if (floatCta)
             floatCta.classList.toggle('show', y > heroBottom && y < accessTop);
+        ticking = false;
     }
+    function onScroll() {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(applyScroll);
+        }
+    }
+    measure();
+    applyScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    /* ---- Mobile menu ---- */
-    function closeMenu() {
-        if (mobileMenu)
-            mobileMenu.classList.remove('open');
-        if (nav)
-            nav.classList.remove('is-open');
-        if (burger)
-            burger.setAttribute('aria-expanded', 'false');
+    window.addEventListener('resize', () => {
+        measure();
+        applyScroll();
+    }, { passive: true });
+    // Re-measure once fonts/images settle and the layout's final height is known.
+    window.addEventListener('load', measure);
+    /* ---- Mobile menu (Escape closes; auto-closes when resized to desktop) ---- */
+    function setMenu(open) {
+        if (!mobileMenu || !nav || !burger)
+            return;
+        mobileMenu.classList.toggle('open', open);
+        nav.classList.toggle('is-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
     if (burger && mobileMenu && nav) {
-        burger.addEventListener('click', () => {
-            const open = mobileMenu.classList.toggle('open');
-            nav.classList.toggle('is-open', open);
-            burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+        mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape')
+                setMenu(false);
         });
-        mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 860)
+                setMenu(false);
+        }, { passive: true });
     }
     /* ---- On mobile, "Request access" jumps to the form, not the section heading ---- */
     document.querySelectorAll('a[href="#access"]').forEach((a) => {
@@ -103,6 +124,7 @@
     if (form) {
         // POSTs to FormSubmit, which forwards the submission as an email.
         const ENDPOINT = 'https://formsubmit.co/ajax/jsilver@instateme.com';
+        const REQUEST_TIMEOUT = 10000;
         const statusEl = byId('reqStatus');
         const submitBtn = byId('reqSubmit');
         const setStatus = (kind, msg) => {
@@ -154,10 +176,14 @@
                 _template: 'table',
                 _captcha: 'false',
             };
+            // Abort a stalled request so the button never hangs.
+            const controller = new AbortController();
+            const timer = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
             fetch(ENDPOINT, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
                 body: JSON.stringify(payload),
+                signal: controller.signal,
             })
                 .then((r) => (r.ok ? r.json().catch(() => ({})) : Promise.reject(r)))
                 .then(() => {
@@ -165,11 +191,12 @@
                 setStatus('ok', 'Thanks — your request is in. Jake will reply within 24 hours.');
             })
                 .catch(() => {
-                // If the request fails, fall back to the buyer's email client so nothing is lost.
+                // If the request fails or times out, fall back to the buyer's email client.
                 setStatus('err', 'Opening your email app to send this directly…');
                 mailtoFallback(name, email, thesis, pof);
             })
                 .then(() => {
+                window.clearTimeout(timer);
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.textContent = orig;
@@ -203,6 +230,17 @@
         STATES.forEach((s) => {
             active[s.k] = true;
         });
+        // Cache output element references once (compute() runs on every slider tick).
+        const OUT_IDS = [
+            'capVal', 'marginVal', 'stateCount', 'oRev', 'oProfit',
+            'oStudents', 'oCum', 'oSaved', 'paybackNum', 'paybackSub', 'paybackBar',
+        ];
+        const out = {};
+        OUT_IDS.forEach((id) => {
+            const el = byId(id);
+            if (el)
+                out[id] = el;
+        });
         const fmtMoney = (n) => {
             if (n >= 1e6)
                 return '$' + (n / 1e6).toFixed(2) + 'M';
@@ -214,7 +252,6 @@
             const pct = ((Number(el.value) - Number(el.min)) / (Number(el.max) - Number(el.min))) * 100;
             el.style.setProperty('--fill', pct + '%');
         };
-        const out = (id) => byId(id);
         // Build state chips
         STATES.forEach((s) => {
             const b = document.createElement('button');
@@ -256,21 +293,18 @@
             const profit = revenue * margin;
             const months = profit > 0 ? (PRICE / profit) * 12 : Infinity;
             const cumulative = revenue * 3.75; // ramped to steady state over ~3 years
-            out('capVal').textContent = parseFloat(capEl.value) + '%';
-            out('marginVal').textContent = marginEl.value + '%';
-            out('stateCount').textContent = n + ' of 6';
-            out('oRev').textContent = fmtMoney(revenue);
-            out('oProfit').textContent = fmtMoney(profit);
-            out('oStudents').textContent = Math.round(students).toLocaleString();
-            out('oCum').textContent = fmtMoney(cumulative);
-            out('oSaved').textContent = fmtMoney(saved);
-            const numEl = out('paybackNum');
-            const subEl = out('paybackSub');
-            const bar = out('paybackBar');
+            out.capVal.textContent = parseFloat(capEl.value) + '%';
+            out.marginVal.textContent = marginEl.value + '%';
+            out.stateCount.textContent = n + ' of 6';
+            out.oRev.textContent = fmtMoney(revenue);
+            out.oProfit.textContent = fmtMoney(profit);
+            out.oStudents.textContent = Math.round(students).toLocaleString();
+            out.oCum.textContent = fmtMoney(cumulative);
+            out.oSaved.textContent = fmtMoney(saved);
             if (profit <= 0) {
-                numEl.textContent = '—';
-                subEl.textContent = 'add a state or include Texas to begin';
-                bar.style.width = '0%';
+                out.paybackNum.textContent = '—';
+                out.paybackSub.textContent = 'add a state or include Texas to begin';
+                out.paybackBar.style.width = '0%';
             }
             else {
                 let label;
@@ -280,9 +314,9 @@
                     label = '≈ ' + Math.round(months) + ' months';
                 else
                     label = '≈ ' + (months / 12).toFixed(1) + ' years';
-                numEl.textContent = label;
-                subEl.textContent = 'of steady-state cash flow recoups the entire purchase price';
-                bar.style.width = Math.max(4, Math.min(100, ((24 - months) / 24) * 100)) + '%';
+                out.paybackNum.textContent = label;
+                out.paybackSub.textContent = 'of steady-state cash flow recoups the entire purchase price';
+                out.paybackBar.style.width = Math.max(4, Math.min(100, ((24 - months) / 24) * 100)) + '%';
             }
             setFill(capEl);
             setFill(marginEl);
