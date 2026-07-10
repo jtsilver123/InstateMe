@@ -100,19 +100,6 @@
     renderCalc();
   }
 
-  /* ---------- Deadline countdown ---------- */
-  // Most 12-month residency clocks for Fall '27 need to start by this date.
-  const DEADLINE = new Date('2026-12-15T00:00:00-06:00');
-  const daysEl = document.getElementById('days-left');
-  if (daysEl) {
-    const days = Math.ceil((DEADLINE.getTime() - Date.now()) / 86400000);
-    if (days > 0) {
-      daysEl.textContent = `${days} days left to start`;
-    } else if (daysEl.parentElement) {
-      daysEl.parentElement.removeChild(daysEl);
-    }
-  }
-
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
