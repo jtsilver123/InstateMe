@@ -61,6 +61,7 @@ strong{font-weight:600}
   color:var(--orange);margin-bottom:1.2rem;
 }
 .eyebrow--muted{color:var(--muted)}
+.eyebrow a{display:inline-block;padding:6px 0;margin:-6px 0}
 .display{
   font-family:var(--serif);font-weight:500;
   font-size:clamp(2.1rem,5.4vw,3.6rem);
@@ -104,7 +105,7 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
   max-width:var(--maxw);margin:0 auto;padding:14px clamp(20px,5vw,48px);
   display:flex;align-items:center;gap:28px;
 }
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.08rem;letter-spacing:-.01em}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.08rem;letter-spacing:-.01em;padding:7px 0}
 .brand img{width:30px;height:30px}
 .nav__links{display:flex;gap:26px;margin-left:auto;align-items:center;list-style:none}
 .nav__links a{font-size:.92rem;font-weight:500;color:var(--muted);transition:color .15s}
@@ -395,8 +396,11 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .footer__tag{max-width:26ch}
 .footer h4{color:var(--cream);font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;margin-bottom:14px}
 .footer ul{list-style:none}
-.footer li{margin-bottom:9px}
+.footer li{margin-bottom:2px}
+.footer li a{display:inline-block;padding:7px 0}
 .footer a{transition:color .15s}
+.footer__bottom a{display:inline-block;padding:7px 0}
+.footer__social a{padding:7px 4px}
 .footer a:hover{color:var(--cream)}
 .footer__bottom{
   border-top:1px solid var(--line-dark);margin-top:44px;padding-top:24px;
