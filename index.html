@@ -73,17 +73,39 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
       <p class="lede">Get a clear, personalized roadmap and expert guidance from your residency advocate — and pay only when you&rsquo;ve secured in-state tuition.</p>
       <div class="btn-row">
         <a class="btn btn--primary btn--lg" href="/meet/" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book Free Consultation</a>
-        <a class="btn btn--ghost btn--lg" href="#calculator">How much will I save?</a>
+        <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
+      </div>
+      <div class="hero__jake">
+        <img src="/assets/img/jake-avatar.webp" alt="Jake Silver" width="52" height="52" />
+        <span><strong>Jake Silver</strong> · Founder — let&rsquo;s discuss your strategy</span>
       </div>
       <div class="hero__proof">
         <img src="/assets/img/families.webp" alt="Photos of families who saved with InstateMe" width="320" height="108" />
         <span><strong>70+ families</strong> secured residency</span>
       </div>
     </div>
-    <div class="hero__card">
-      <img src="/assets/img/jake-hero.webp" alt="Jake Silver, founder of InstateMe" width="480" height="722" fetchpriority="high" />
-      <span class="hero__chip hero__chip--tl"><span class="num">100%</span><small>residency success rate</small></span>
-      <span class="hero__chip hero__chip--br"><span class="num">$80,000</span><small>average tuition savings</small></span>
+    <div class="calcard" id="calculator" aria-label="Tuition savings calculator">
+      <p class="calcard__title">How much will I save?</p>
+      <div class="calcard__field">
+        <label for="calc-year">I'm a</label>
+        <select id="calc-year">
+          <option value="4">High school senior</option>
+          <option value="3" selected>Freshman</option>
+          <option value="2">Sophomore</option>
+        </select>
+      </div>
+      <div class="calcard__field">
+        <label for="calc-school">Attending</label>
+        <select id="calc-school"></select>
+      </div>
+      <div class="calcard__rates">
+        <div><small>Non-resident tuition</small><strong id="calc-oos">$22,000</strong><small>per semester</small></div>
+        <div><small>Resident tuition</small><strong class="res" id="calc-res">$5,500</strong><small>per semester</small></div>
+      </div>
+      <div class="calcard__row"><span>Semesterly saved</span><strong id="calc-sem">$16,500</strong></div>
+      <div class="calcard__row calcard__row--total"><span>Total saved <span id="calc-years" class="calcard__years">(3 years)</span></span><strong id="calc-total">$99,000</strong></div>
+      <a class="btn btn--primary" style="width:100%" href="/meet/" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Start Saving — Book a Free Call</a>
+      <p class="calcard__note">Estimates from published tuition rates. Most students reclassify after a 12-month residency period.</p>
     </div>
   </div>
 </section>
@@ -108,33 +130,6 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
       <a href="https://www.kut.org/education/2025-07-01/university-of-texas-austin-in-state-tuition-real-estate" target="_blank" rel="noopener">KUT News</a>
       <a href="https://blogs.mccombs.utexas.edu/texasventurelabs/2023/08/18/meet-the-fall-2023-tvl-accelerator-cohort/" target="_blank" rel="noopener">UT McCombs</a>
       <a href="https://www.linkedin.com/posts/fiestacommunity_austintech-fiestacommunity-startuplife-activity-7211763449037561856-D9n4" target="_blank" rel="noopener">Fiesta</a>
-    </div>
-  </div>
-</section>
-
-<!-- Calculator -->
-<section class="section" id="calculator">
-  <div class="container">
-    <div class="calc reveal">
-      <div>
-        <h2>How much will <em style="color:var(--orange-bright);font-style:normal">you</em> save?</h2>
-        <p>Out-of-state students often pay three to four times the resident rate. See what reclassification is worth at your school.</p>
-        <label for="calc-school">Attending</label>
-        <select id="calc-school"></select>
-        <label for="calc-year">I'm a&hellip;</label>
-        <select id="calc-year">
-          <option value="4">High school senior (4 years of savings)</option>
-          <option value="3" selected>Freshman (3 years of savings)</option>
-          <option value="2">Sophomore (2 years of savings)</option>
-        </select>
-      </div>
-      <div class="calc__out" aria-live="polite">
-        <div class="calc__row"><span>Published tuition</span><strong id="calc-rates">&nbsp;</strong></div>
-        <div class="calc__row"><span>You save every year</span><strong id="calc-annual">&nbsp;</strong></div>
-        <div class="calc__row calc__row--total"><span>Total savings</span><strong id="calc-total">&nbsp;</strong></div>
-        <p class="calc__note">Estimates based on published tuition rates; your numbers depend on school, college, and course load. Most students reclassify after a 12-month residency period.</p>
-        <div><a class="btn btn--primary" href="/meet/" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Start Saving — Book a Free Call</a></div>
-      </div>
     </div>
   </div>
 </section>

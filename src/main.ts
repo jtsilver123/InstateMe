@@ -65,22 +65,28 @@
 
   const schoolSel = document.getElementById('calc-school') as HTMLSelectElement | null;
   const yearSel = document.getElementById('calc-year') as HTMLSelectElement | null;
-  const outAnnual = document.getElementById('calc-annual');
-  const outRates = document.getElementById('calc-rates');
+  const outOos = document.getElementById('calc-oos');
+  const outRes = document.getElementById('calc-res');
+  const outSem = document.getElementById('calc-sem');
+  const outYears = document.getElementById('calc-years');
   const outTotal = document.getElementById('calc-total');
 
   const fmt = (n: number): string =>
     '$' + Math.round(n).toLocaleString('en-US');
 
   const renderCalc = (): void => {
-    if (!schoolSel || !yearSel || !outAnnual || !outTotal || !outRates) return;
+    if (!schoolSel || !yearSel || !outOos || !outRes || !outSem || !outTotal) return;
     const school = SCHOOLS[schoolSel.selectedIndex];
     const yearsRemaining = Number(yearSel.value); // years of savings after reclassification
     if (!school || !Number.isFinite(yearsRemaining)) return;
     const annual = school.outOfState - school.inState;
-    outRates.textContent = `${fmt(school.outOfState)} out-of-state vs ${fmt(school.inState)} in-state`;
-    outAnnual.textContent = `${fmt(annual)} / year`;
+    outOos.textContent = fmt(school.outOfState / 2);
+    outRes.textContent = fmt(school.inState / 2);
+    outSem.textContent = fmt(annual / 2);
     outTotal.textContent = fmt(annual * yearsRemaining);
+    if (outYears) {
+      outYears.textContent = `(${yearsRemaining} year${yearsRemaining === 1 ? '' : 's'})`;
+    }
   };
 
   if (schoolSel && yearSel) {
