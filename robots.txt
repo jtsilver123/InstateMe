@@ -3,4 +3,4 @@ Allow: /
 Disallow: /buy/
 Disallow: /entity-creation-success/
 
-Sitemap: https://instateme.com/sitemap.xml
+Sitemap: https://www.instateme.com/sitemap.xml
