@@ -1,11 +1,11 @@
 {
-  "name": "instateme-acquisition-site",
-  "version": "1.0.0",
+  "name": "instateme-site",
+  "version": "2.0.0",
   "private": true,
-  "description": "Buyer-facing acquisition microsite for InstateMe.",
+  "description": "instateme.com — main site (root) and acquisition microsite (/buy).",
   "scripts": {
-    "build": "tsc",
-    "typecheck": "tsc --noEmit",
+    "build": "tsc && tsc -p buy",
+    "typecheck": "tsc --noEmit && tsc -p buy --noEmit",
     "watch": "tsc --watch"
   },
   "devDependencies": {

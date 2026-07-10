@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /buy/
+Disallow: /entity-creation-success/
+
+Sitemap: https://instateme.com/sitemap.xml
