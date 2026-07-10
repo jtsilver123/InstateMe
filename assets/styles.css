@@ -295,6 +295,30 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 }
 .prose .callout strong{color:var(--green)}
 
+/* ---------- Post content (1:1 Wix imports) ---------- */
+.prose .post-img{margin:1.6em auto;text-align:center}
+.prose .post-img img{margin:0 auto;border-radius:10px;width:auto}
+.prose .post-img figcaption{font-size:.82rem;color:var(--muted);margin-top:.6em}
+.prose ol ol,.prose ul ul,.prose ol ul,.prose ul ol{margin-top:.45em}
+.prose ol ol{list-style:lower-alpha}
+.prose ol ol ol{list-style:lower-roman}
+.prose hr{border:0;border-top:1px solid var(--line);margin:2.2em 0}
+.file-card{
+  display:flex;align-items:center;gap:14px;margin:1.2em 0;
+  background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+  text-decoration:none !important;transition:border-color .15s,transform .15s;
+}
+.file-card:hover{border-color:var(--orange);transform:translateY(-1px)}
+.file-card__icon{
+  width:40px;height:40px;border-radius:9px;background:var(--orange-soft);color:var(--orange);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.file-card strong{display:block;color:var(--text)}
+.file-card small{color:var(--muted);font-size:.8rem}
+.post-embed{position:relative;margin:1.6em 0}
+.post-embed iframe{border-radius:12px}
+.prose .faq-list .faq-a{max-width:none}
+
 /* ---------- Tier cards (referral) ---------- */
 .tier{position:relative;text-align:center;padding:34px 26px}
 .tier .tier__name{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);font-weight:600}
