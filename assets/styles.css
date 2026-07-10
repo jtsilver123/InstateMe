@@ -160,9 +160,18 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .press__label{font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);width:100%;text-align:center;margin-bottom:16px}
 .press__row a{
   font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--muted);
-  transition:color .15s;letter-spacing:.01em;
+  transition:color .15s;letter-spacing:.01em;display:flex;align-items:center;
 }
 .press__row a:hover{color:var(--text)}
+.press__row img{
+  height:32px;width:auto;filter:grayscale(1);opacity:.6;
+  transition:filter .2s,opacity .2s;
+}
+.press__row img[height="44"]{height:44px}
+.press__row img[height="34"]{height:34px}
+.press__row img[height="30"]{height:30px}
+.press__row a:hover img{filter:none;opacity:1}
+@media (max-width:640px){.press__row img{height:24px}.press__row img[height="44"]{height:34px}}
 
 /* ---------- Hero calculator card ---------- */
 .calcard{
