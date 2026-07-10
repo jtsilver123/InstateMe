@@ -59,6 +59,7 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
       <li><a href="/state-rules/">State Rules</a></li>
       <li><a href="/resources/">Resources</a></li>
       <li><a href="/about/">About</a></li>
+      <li class="nav__cta nav__cta--ghost"><a class="btn btn--ghost" href="https://buy.stripe.com/aEU4i1dtIaLE63e7sv" target="_blank" rel="noopener">Start Saving</a></li>
       <li class="nav__cta"><a class="btn btn--primary" href="/meet/" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book Free Consultation</a></li>
     </ul>
   </div>
@@ -69,21 +70,27 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
 <section class="hero">
   <div class="container hero__grid">
     <div>
-      <p class="badge"><span class="dot"></span>Now enrolling for Fall '27 · limited spots</p>
       <h1 class="display">Secure <em>in-state tuition</em> and save thousands, <em class="g">risk-free</em>.</h1>
       <p class="lede">Get a clear, personalized roadmap and expert guidance from your residency advocate — and pay only when you&rsquo;ve secured in-state tuition.</p>
-      <div class="btn-row">
-        <a class="btn btn--primary btn--lg" href="/meet/" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book Free Consultation</a>
-        <a class="btn btn--ghost btn--lg" href="#how">See how it works</a>
+      <div class="jakebar-wrap">
+        <div class="jakebar">
+          <span class="jakebar__avatar">
+            <img src="/assets/img/jake-avatar.webp" alt="Jake Silver" width="48" height="48" />
+            <i class="jakebar__dot" aria-hidden="true"></i>
+          </span>
+          <span class="jakebar__text"><strong>Jake Silver</strong><small>Let's discuss your strategy</small></span>
+          <a class="jakebar__btn" href="/meet/" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book Free Consultation</a>
+        </div>
+        <div class="jakebar__meta">
+          <span><strong>15 spots</strong> remaining for Fall '27</span>
+          <span><strong id="days-left">152</strong> days left</span>
+        </div>
+        <div class="jakebar__bar"><span id="enroll-bar" style="width:56%"></span></div>
       </div>
-      <p class="btn-note">Free 30-minute call · zero pressure · parents welcome</p>
-      <div class="hero__jake">
-        <img src="/assets/img/jake-avatar.webp" alt="Jake Silver" width="52" height="52" />
-        <span><strong>Jake Silver</strong> · Founder — let&rsquo;s discuss your strategy</span>
-      </div>
+      <p class="btn-note" style="text-align:left">Free 30-minute call · zero pressure · parents welcome</p>
       <div class="hero__proof">
         <img src="/assets/img/families.webp" alt="Photos of families who saved with InstateMe" width="320" height="108" />
-        <span><strong>70+ families</strong> secured residency</span>
+        <span><span class="stars" aria-label="Rated 5 out of 5 stars">★★★★★</span><br><strong>70+ families</strong> secured residency</span>
       </div>
     </div>
     <div class="calcard" id="calculator" aria-label="Tuition savings calculator">

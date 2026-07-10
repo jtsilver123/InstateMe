@@ -194,9 +194,39 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .calcard__row--total strong{font-size:clamp(1.8rem,3vw,2.3rem);color:var(--orange)}
 .calcard__years{font-size:.78rem}
 .calcard__note{font-size:.74rem;color:var(--muted);line-height:1.5}
-.hero__jake{display:flex;align-items:center;gap:12px;margin-top:1.6rem;font-size:.92rem;color:var(--muted)}
-.hero__jake img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
-.hero__jake strong{color:var(--text)}
+/* ---------- Jake booking bar (hero) ---------- */
+.jakebar-wrap{max-width:520px;margin-top:1.8rem}
+.jakebar{
+  display:flex;align-items:center;gap:14px;
+  background:var(--orange);border-radius:999px;padding:10px 12px 10px 12px;
+  box-shadow:0 14px 34px -16px rgba(200,90,41,.55);
+}
+.jakebar__avatar{position:relative;flex-shrink:0;display:block}
+.jakebar__avatar img{width:48px;height:48px;border-radius:50%;object-fit:cover;display:block;background:#fff}
+.jakebar__dot{
+  position:absolute;top:-1px;right:-1px;width:13px;height:13px;border-radius:50%;
+  background:#3BA55D;border:2px solid var(--orange);
+}
+.jakebar__text{flex:1;min-width:0;color:#fff;line-height:1.25}
+.jakebar__text strong{display:block;font-size:1.02rem}
+.jakebar__text small{color:rgba(255,255,255,.75);font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.jakebar__btn{
+  background:#fff;color:var(--ink);font-weight:700;font-size:.95rem;
+  border-radius:999px;padding:.7em 1.25em;white-space:nowrap;flex-shrink:0;
+  transition:transform .15s var(--ease);cursor:pointer;
+}
+.jakebar__btn:hover{transform:translateY(-1px)}
+.jakebar__meta{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:.92rem;color:var(--text)}
+.jakebar__bar{height:8px;background:var(--cream-2);border:1px solid var(--line);border-radius:999px;margin-top:7px;overflow:hidden}
+.jakebar__bar span{display:block;height:100%;background:#CC8A62;border-radius:999px;transition:width .6s var(--ease)}
+@media (max-width:480px){
+  .jakebar{gap:10px;padding:8px 10px}
+  .jakebar__avatar img{width:42px;height:42px}
+  .jakebar__text strong{font-size:.92rem}
+  .jakebar__text small{font-size:.76rem}
+  .jakebar__btn{font-size:.82rem;padding:.65em 1em}
+}
+.stars{color:var(--orange);letter-spacing:2px;font-size:.95rem}
 
 /* ---------- Cards / grids ---------- */
 .grid{display:grid;gap:22px;margin-top:2.6rem}
@@ -325,6 +355,24 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .tier .tier__pct{font-family:var(--serif);font-size:2.6rem;font-weight:600;color:var(--orange);margin:.15em 0}
 .tier .tier__req{font-weight:600;font-size:.95rem;margin-bottom:.4em;color:var(--green)}
 .tier--featured{border-color:var(--orange)}
+
+/* ---------- Interactive US map (state rules) ---------- */
+.usmap-wrap{position:relative;max-width:900px;margin:0 auto}
+.usmap{width:100%;height:auto;display:block}
+.usmap path{fill:var(--cream-2);stroke:#fff;stroke-width:1;transition:fill .15s}
+.usmap path[fill="none"]{fill:none}
+.usmap .map-live path{fill:#4E8A5E;cursor:pointer}
+.usmap .map-live:hover path,.usmap .map-live:focus path{fill:var(--orange)}
+.usmap .map-live:focus{outline:none}
+.usmap-tip{
+  position:absolute;z-index:5;pointer-events:none;max-width:290px;
+  background:var(--ink);color:var(--cream);border-radius:10px;padding:12px 14px;
+  font-size:.85rem;line-height:1.5;box-shadow:var(--shadow);
+}
+.usmap-tip strong{display:block;color:#fff;margin-bottom:2px}
+.usmap-legend{margin-top:14px;text-align:center;font-size:.85rem;color:var(--muted)}
+.usmap-key{display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--cream-2);border:1px solid var(--line);vertical-align:-1px;margin-right:6px}
+.usmap-key--live{background:#4E8A5E;border-color:#4E8A5E}
 
 /* ---------- Cal inline embed ---------- */
 .cal-inline{margin-top:2rem;min-height:640px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}

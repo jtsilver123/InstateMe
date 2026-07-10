@@ -100,6 +100,57 @@
     renderCalc();
   }
 
+  /* ---------- Enrollment countdown + progress bar ---------- */
+  // Last realistic date to start a 12-month residency clock for Fall '27.
+  const ENROLL_START = new Date('2026-01-01T00:00:00-06:00');
+  const ENROLL_DEADLINE = new Date('2026-12-09T00:00:00-06:00');
+  const daysEl = document.getElementById('days-left');
+  const barEl = document.getElementById('enroll-bar');
+  if (daysEl) {
+    const days = Math.ceil((ENROLL_DEADLINE.getTime() - Date.now()) / 86400000);
+    if (days > 0) {
+      daysEl.textContent = String(days);
+      if (barEl) {
+        const total = ENROLL_DEADLINE.getTime() - ENROLL_START.getTime();
+        const elapsed = Date.now() - ENROLL_START.getTime();
+        const pct = Math.min(96, Math.max(6, Math.round((elapsed / total) * 100)));
+        barEl.style.width = pct + '%';
+      }
+    } else {
+      const wrap = daysEl.closest('.jakebar-wrap');
+      const meta = wrap && wrap.querySelector('.jakebar__meta');
+      const bar = wrap && wrap.querySelector('.jakebar__bar');
+      if (meta && meta.parentElement) meta.parentElement.removeChild(meta);
+      if (bar && bar.parentElement) bar.parentElement.removeChild(bar);
+    }
+  }
+
+  /* ---------- State-rules map tooltip ---------- */
+  const mapWrap = document.querySelector<HTMLElement>('.usmap-wrap');
+  const tip = document.getElementById('map-tip');
+  const tipName = document.getElementById('map-tip-name');
+  const tipText = document.getElementById('map-tip-text');
+  if (mapWrap && tip && tipName && tipText) {
+    const lives = mapWrap.querySelectorAll<SVGAElement>('.map-live');
+    lives.forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        tipName.textContent = el.getAttribute('data-name');
+        tipText.textContent = el.getAttribute('data-tip');
+        tip.hidden = false;
+      });
+      el.addEventListener('mouseleave', () => {
+        tip.hidden = true;
+      });
+      el.addEventListener('mousemove', (e: MouseEvent) => {
+        const r = mapWrap.getBoundingClientRect();
+        const x = Math.min(e.clientX - r.left + 16, r.width - 300);
+        const y = e.clientY - r.top + 18;
+        tip.style.left = Math.max(0, x) + 'px';
+        tip.style.top = y + 'px';
+      });
+    });
+  }
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
