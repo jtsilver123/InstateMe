@@ -367,22 +367,123 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .tier--featured{border-color:var(--orange)}
 
 /* ---------- Interactive US map (state rules) ---------- */
+:root{
+  --t-operating:#2F6B47;
+  --t-achievable:#8FB79A;
+  --t-moderate:#E4C68C;
+  --t-difficult:#D9946B;
+  --t-very:#B0604A;
+}
 .usmap-wrap{position:relative;max-width:900px;margin:0 auto}
 .usmap{width:100%;height:auto;display:block}
-.usmap path{fill:var(--cream-2);stroke:#fff;stroke-width:1;transition:fill .15s}
+.usmap path{fill:var(--cream-2);stroke:#fff;stroke-width:1;transition:fill .15s,opacity .15s}
 .usmap path[fill="none"]{fill:none}
-.usmap .map-live path{fill:#4E8A5E;cursor:pointer}
-.usmap .map-live:hover path,.usmap .map-live:focus path{fill:var(--orange)}
+.usmap .map-live{cursor:pointer}
+.usmap .map-live path{fill:var(--t-operating)} /* default until a tier class applies */
 .usmap .map-live:focus{outline:none}
+.usmap .map-live:focus-visible path{stroke:var(--ink);stroke-width:2}
+.usmap .t-operating path{fill:var(--t-operating)}
+.usmap .t-achievable path{fill:var(--t-achievable)}
+.usmap .t-moderate path{fill:var(--t-moderate)}
+.usmap .t-difficult path{fill:var(--t-difficult)}
+.usmap .t-very-difficult path{fill:var(--t-very)}
+.usmap .map-live:hover path{fill:var(--orange)}
+.usmap .is-expanding path{stroke:var(--orange);stroke-width:1.8;stroke-dasharray:3 2}
 .usmap-tip{
-  position:absolute;z-index:5;pointer-events:none;max-width:290px;
+  position:absolute;z-index:5;pointer-events:none;max-width:300px;
   background:var(--ink);color:var(--cream);border-radius:10px;padding:12px 14px;
   font-size:.85rem;line-height:1.5;box-shadow:var(--shadow);
 }
 .usmap-tip strong{display:block;color:#fff;margin-bottom:2px}
-.usmap-legend{margin-top:14px;text-align:center;font-size:.85rem;color:var(--muted)}
-.usmap-key{display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--cream-2);border:1px solid var(--line);vertical-align:-1px;margin-right:6px}
-.usmap-key--live{background:#4E8A5E;border-color:#4E8A5E}
+.usmap-tip .tip-tier{
+  display:inline-block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;
+  font-weight:700;margin-bottom:6px;color:var(--orange-bright);
+}
+.usmap-legend{
+  margin:18px auto 0;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;
+  font-size:.85rem;color:var(--muted);max-width:760px;
+}
+.usmap-legend span{display:inline-flex;align-items:center;gap:7px}
+.usmap-key{display:inline-block;width:13px;height:13px;border-radius:3px;background:var(--cream-2);border:1px solid var(--line);flex-shrink:0}
+.usmap-key--operating{background:var(--t-operating);border-color:var(--t-operating)}
+.usmap-key--achievable{background:var(--t-achievable);border-color:var(--t-achievable)}
+.usmap-key--moderate{background:var(--t-moderate);border-color:var(--t-moderate)}
+.usmap-key--difficult{background:var(--t-difficult);border-color:var(--t-difficult)}
+.usmap-key--very{background:var(--t-very);border-color:var(--t-very)}
+.usmap-key--expanding{background:transparent;border:1.8px dashed var(--orange)}
+.usmap-note{text-align:center;font-size:.8rem;color:var(--muted);margin-top:12px}
+
+/* ---------- State index grid ---------- */
+.stategrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:1.6rem}
+.statelink{
+  display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:11px 13px;font-size:.92rem;font-weight:500;
+  transition:border-color .15s,transform .15s;
+}
+.statelink:hover{border-color:var(--orange);transform:translateY(-1px)}
+.statelink .dotk{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+.statelink small{display:block;color:var(--muted);font-size:.75rem;font-weight:400}
+
+/* ---------- State guide: key facts + badges ---------- */
+.tier-badge{
+  display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+  padding:.4em 1em;font-size:.8rem;font-weight:700;letter-spacing:.02em;
+  background:var(--cream-2);color:var(--text);
+}
+.tier-badge::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
+.tier-operating{background:#E1EFE6;color:#245537}
+.tier-achievable{background:#E8F1EA;color:#3E6B4E}
+.tier-moderate{background:#FAF0DA;color:#7A5B1E}
+.tier-difficult{background:#FBE7DA;color:#8C4A22}
+.tier-very-difficult{background:#F7DED7;color:#8A3524}
+
+.keyfacts{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  margin:1.8em 0;
+}
+.keyfacts div{background:#fff;padding:16px 18px}
+.keyfacts dt{
+  font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);
+  font-weight:600;margin-bottom:5px;
+}
+.keyfacts dd{margin:0;font-family:var(--serif);font-size:1.24rem;font-weight:600;line-height:1.25}
+.keyfacts dd small{display:block;font-family:var(--sans);font-size:.76rem;font-weight:400;color:var(--muted);margin-top:3px}
+.keyfacts .kf-save dd{color:var(--green)}
+
+/* ---------- Article table of contents ---------- */
+.toc{
+  background:var(--cream);border:1px solid var(--line);border-radius:12px;
+  padding:18px 22px;margin:1.8em 0;
+}
+.toc p{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:600;margin-bottom:10px}
+.toc ol{list-style:none;padding:0;margin:0;columns:2;column-gap:28px}
+.toc li{margin:0 0 7px;break-inside:avoid}
+.toc a{color:var(--text);font-size:.92rem;text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{color:var(--orange);border-bottom-color:var(--orange)}
+@media (max-width:640px){.toc ol{columns:1}}
+
+/* ---------- Sources / citations ---------- */
+.sources{
+  border-top:1px solid var(--line);margin-top:2.4em;padding-top:1.4em;
+  font-size:.86rem;color:var(--muted);
+}
+.sources p{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;font-weight:600;margin-bottom:10px}
+.sources ul{list-style:none;padding:0}
+.sources li{margin-bottom:7px;word-break:break-word}
+.sources a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+.sources a:hover{color:var(--orange)}
+.verify-note{
+  background:var(--cream);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;
+  padding:14px 18px;font-size:.88rem;color:var(--muted);margin:1.6em 0;
+}
+.verify-note strong{color:var(--text)}
+
+/* ---------- Prose polish ---------- */
+.prose h2{scroll-margin-top:84px}
+.prose h2 + p{margin-top:.7em}
+.prose ul li::marker{color:var(--orange)}
+.prose ol li::marker{color:var(--orange);font-weight:600}
 
 /* ---------- Cal inline embed ---------- */
 .cal-inline{margin-top:2rem;min-height:640px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}

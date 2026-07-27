@@ -127,12 +127,14 @@
   const tip = document.getElementById('map-tip');
   const tipName = document.getElementById('map-tip-name');
   const tipText = document.getElementById('map-tip-text');
+  const tipTier = document.getElementById('map-tip-tier');
   if (mapWrap && tip && tipName && tipText) {
     const lives = mapWrap.querySelectorAll<SVGAElement>('.map-live');
     lives.forEach((el) => {
       el.addEventListener('mouseenter', () => {
         tipName.textContent = el.getAttribute('data-name');
         tipText.textContent = el.getAttribute('data-tip');
+        if (tipTier) tipTier.textContent = el.getAttribute('data-tier') || '';
         tip.hidden = false;
       });
       el.addEventListener('mouseleave', () => {
