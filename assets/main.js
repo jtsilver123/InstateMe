@@ -85,30 +85,24 @@
         renderCalc();
     }
     /* ---------- Enrollment countdown + progress bar ---------- */
-    // Last realistic date to start a 12-month residency clock for Fall '27.
-    const ENROLL_START = new Date('2026-01-01T00:00:00-06:00');
-    const ENROLL_DEADLINE = new Date('2026-12-09T00:00:00-06:00');
+    // Counts down to the next September 1st, then rolls over to the
+    // following year automatically. The bar fills across the 12-month cycle.
     const daysEl = document.getElementById('days-left');
     const barEl = document.getElementById('enroll-bar');
     if (daysEl) {
-        const days = Math.ceil((ENROLL_DEADLINE.getTime() - Date.now()) / 86400000);
-        if (days > 0) {
-            daysEl.textContent = String(days);
-            if (barEl) {
-                const total = ENROLL_DEADLINE.getTime() - ENROLL_START.getTime();
-                const elapsed = Date.now() - ENROLL_START.getTime();
-                const pct = Math.min(96, Math.max(6, Math.round((elapsed / total) * 100)));
-                barEl.style.width = pct + '%';
-            }
+        const now = new Date();
+        let deadline = new Date(now.getFullYear(), 8, 1); // Sep 1 this year, local time
+        if (deadline.getTime() <= now.getTime()) {
+            deadline = new Date(now.getFullYear() + 1, 8, 1);
         }
-        else {
-            const wrap = daysEl.closest('.jakebar-wrap');
-            const meta = wrap && wrap.querySelector('.jakebar__meta');
-            const bar = wrap && wrap.querySelector('.jakebar__bar');
-            if (meta && meta.parentElement)
-                meta.parentElement.removeChild(meta);
-            if (bar && bar.parentElement)
-                bar.parentElement.removeChild(bar);
+        const cycleStart = new Date(deadline.getFullYear() - 1, 8, 1);
+        const days = Math.ceil((deadline.getTime() - now.getTime()) / 86400000);
+        daysEl.textContent = String(days);
+        if (barEl) {
+            const total = deadline.getTime() - cycleStart.getTime();
+            const elapsed = now.getTime() - cycleStart.getTime();
+            const pct = Math.min(96, Math.max(6, Math.round((elapsed / total) * 100)));
+            barEl.style.width = pct + '%';
         }
     }
     /* ---------- State-rules map tooltip ---------- */
