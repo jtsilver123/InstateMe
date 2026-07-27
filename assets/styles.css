@@ -451,6 +451,39 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .keyfacts dd small{display:block;font-family:var(--sans);font-size:.76rem;font-weight:400;color:var(--muted);margin-top:3px}
 .keyfacts .kf-save dd{color:var(--green)}
 
+/* ---------- State guide: verdict banner ---------- */
+.verdict{
+  border-radius:14px;padding:20px 24px;margin:1.6em 0;
+  border-left:5px solid var(--muted);background:var(--cream);
+}
+.verdict__label{
+  font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;font-weight:700;
+  margin-bottom:8px;color:var(--muted);
+}
+.verdict p:last-child{margin:0;font-size:1.02rem}
+.verdict-operating,.verdict-achievable{border-left-color:var(--t-operating);background:#EDF4EF}
+.verdict-operating .verdict__label,.verdict-achievable .verdict__label{color:#2A5E3E}
+.verdict-moderate{border-left-color:#C9A25A;background:#FBF4E6}
+.verdict-moderate .verdict__label{color:#7A5B1E}
+.verdict-difficult{border-left-color:var(--t-difficult);background:#FCEFE6}
+.verdict-difficult .verdict__label{color:#8C4A22}
+.verdict-very-difficult{border-left-color:var(--t-very);background:#FAE9E4}
+.verdict-very-difficult .verdict__label{color:#8A3524}
+
+/* ---------- State guide: lists and fine print ---------- */
+.prose .steplist{padding-left:1.3em}
+.prose .steplist > li{margin-top:1em}
+.prose .steplist ul{margin-top:.5em}
+.prose .doclist{padding-left:1.3em}
+.prose .doclist li{margin-top:.5em}
+.prose .fineprint{font-size:.85rem;color:var(--muted);margin-top:.7em}
+/* .prose a would otherwise win on specificity and paint button text orange-on-orange */
+.prose a.btn{text-decoration:none}
+.prose a.btn--primary,.prose a.btn--primary:hover{color:#fff}
+.prose a.btn--ghost{color:var(--text)}
+.prose .na{font-size:.94rem;color:var(--muted);font-style:italic}
+.prose table .row-total td{background:var(--cream);border-top:2px solid var(--line)}
+
 /* ---------- Article table of contents ---------- */
 .toc{
   background:var(--cream);border:1px solid var(--line);border-radius:12px;
