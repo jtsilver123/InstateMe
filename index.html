@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>InstateMe: Secure In-State Tuition and Save Thousands, Risk-Free</title>
-<meta name="description" content="Get a clear, personalized roadmap and expert residency guidance. You only pay when you've secured in-state tuition. Operating since 2022 with a 100% success rate and 70+ families served." />
+<meta name="description" content="Get a clear, personalized roadmap and expert residency guidance. You only pay when you've secured in-state tuition. Operating since 2022 with a 100% success rate (outside recent UT Austin policy-change denials) and 70+ families served." />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://www.instateme.com/" />
 <meta name="theme-color" content="#FBF9F4" />
@@ -13,14 +13,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.instateme.com/" />
 <meta property="og:title" content="InstateMe: Secure In-State Tuition and Save Thousands, Risk-Free" />
-<meta property="og:description" content="Get a clear, personalized roadmap and expert residency guidance. You only pay when you've secured in-state tuition. Operating since 2022 with a 100% success rate and 70+ families served." />
+<meta property="og:description" content="Get a clear, personalized roadmap and expert residency guidance. You only pay when you've secured in-state tuition. Operating since 2022 with a 100% success rate (outside recent UT Austin policy-change denials) and 70+ families served." />
 <meta property="og:image" content="https://www.instateme.com/assets/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="InstateMe: Secure in-state tuition and save thousands, risk-free." />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="InstateMe: Secure In-State Tuition and Save Thousands, Risk-Free" />
-<meta name="twitter:description" content="Get a clear, personalized roadmap and expert residency guidance. You only pay when you've secured in-state tuition. Operating since 2022 with a 100% success rate and 70+ families served." />
+<meta name="twitter:description" content="Get a clear, personalized roadmap and expert residency guidance. You only pay when you've secured in-state tuition. Operating since 2022 with a 100% success rate (outside recent UT Austin policy-change denials) and 70+ families served." />
 <meta name="twitter:image" content="https://www.instateme.com/assets/og-image.png" />
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
@@ -59,7 +59,6 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
       <li><a href="/state-rules">State Rules</a></li>
       <li><a href="/resources">Resources</a></li>
       <li><a href="/about">About</a></li>
-      <li class="nav__cta nav__cta--ghost"><a class="btn btn--ghost" href="https://buy.stripe.com/aEU4i1dtIaLE63e7sv" target="_blank" rel="noopener">Start Saving</a></li>
       <li class="nav__cta"><a class="btn btn--primary" href="/meet" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book Free Consultation</a></li>
     </ul>
   </div>
@@ -78,16 +77,17 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
             <img src="/assets/img/jake-avatar.webp" alt="Jake Silver" width="48" height="48" />
             <i class="jakebar__dot" aria-hidden="true"></i>
           </span>
-          <span class="jakebar__text"><strong>Jake Silver</strong><small>Let's discuss your strategy</small></span>
+          <span class="jakebar__text"><strong>Jake Silver</strong><small>Free strategy call</small></span>
           <a class="jakebar__btn" href="/meet" data-cal-link="team/instateme/residency-consultation" data-cal-namespace="residency-consultation" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'>Book Free Consultation</a>
         </div>
         <div class="jakebar__meta">
           <span><strong>15 spots</strong> remaining for <span id="enroll-term">Spring '27</span></span>
-          <span><strong id="days-left">98</strong> days left</span>
+          <span><strong id="days-left">98</strong> <span id="days-word">days</span> left</span>
         </div>
         <div class="jakebar__bar"><span id="enroll-bar" style="width:30%"></span></div>
       </div>
       <p class="btn-note" style="text-align:left">Free 30-minute call · zero pressure · parents welcome</p>
+      <a class="hero__calc-link" href="#calculator">See how much you&rsquo;d save &darr;</a>
       <div class="hero__proof">
         <img src="/assets/img/families.webp" alt="Photos of families who saved with InstateMe" width="320" height="108" />
         <span><span class="stars" aria-label="Rated 5 out of 5 stars">★★★★★</span><br><strong>70+ families</strong> secured residency</span>
@@ -144,18 +144,20 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
   </div>
 </section>
 
-<!-- How it works -->
+<!-- How it works + pricing -->
 <section class="section section--cream" id="how">
+  <span id="pricing" aria-hidden="true"></span>
   <div class="container">
-    <p class="eyebrow">How it works</p>
+    <p class="eyebrow">How it works &middot; pricing</p>
     <h2 class="display">A clear path from out-of-state to <em>in-state</em></h2>
-    <p class="lede">No pressure and no jargon. If residency isn&rsquo;t realistic for your situation, we&rsquo;ll tell you on the first call, free.</p>
+    <p class="lede">No hourly billing, no jargon, no surprises. If residency isn&rsquo;t realistic for your situation, we&rsquo;ll tell you on the first call, free.</p>
     <div class="steps">
-      <div class="step reveal"><h3>Free consultation</h3><p>A quick call to understand your situation, your school, and whether residency is realistic for you. If it isn&rsquo;t, we&rsquo;ll tell you, at no charge.</p></div>
-      <div class="step reveal"><h3>Personalized roadmap</h3><p>You get a step-by-step plan tailored to your state&rsquo;s rules and your university&rsquo;s specific requirements.</p></div>
+      <div class="step reveal"><h3>Free consultation</h3><p>An honest read on your odds, your school, and your timeline. If residency doesn&rsquo;t make sense for you, that&rsquo;s where it ends, at no charge.</p></div>
+      <div class="step reveal"><h3>Personalized roadmap</h3><p>A refundable initial fee covers a step-by-step plan built on your state&rsquo;s rules and your university&rsquo;s requirements.</p></div>
       <div class="step reveal"><h3>Guided execution</h3><p>We help with documentation and appointments, and you track every milestone in your personal InstateMe portal.</p></div>
-      <div class="step reveal"><h3>Reclassified</h3><p>You&rsquo;re granted in-state tuition. Only then do we get paid, out of the savings we created.</p></div>
+      <div class="step reveal"><h3>Reclassified</h3><p>Only once you&rsquo;re granted in-state tuition do we charge our success fee: your first semester of savings, typically 10 to 20% of the total. Every semester after that is 100% yours.</p></div>
     </div>
+    <p class="mt-2" style="font-size:.9rem;color:var(--muted)">Questions about your specific numbers? <a href="/meet" style="color:var(--orange);font-weight:600">Ask us on a free call</a> or read the <a href="/faq" style="color:var(--orange);font-weight:600">FAQs</a>.</p>
   </div>
 </section>
 
@@ -184,27 +186,17 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
   </div>
 </section>
 
-<!-- Pricing -->
-<section class="section section--cream" id="pricing">
-  <div class="container">
-    <p class="eyebrow">Pricing, in plain English</p>
-    <h2 class="display">We only win when <em>you save</em></h2>
-    <p class="lede">No hourly billing and no surprises. Our fee comes out of the savings we create. Here&rsquo;s the whole model:</p>
-    <div class="steps steps--3">
-      <div class="step reveal"><h3>Free consultation</h3><p>An honest read on your odds. If residency doesn&rsquo;t make sense for you, that&rsquo;s where it ends, at no charge.</p></div>
-      <div class="step reveal"><h3>Refundable initial fee</h3><p>Covers your personalized roadmap, document support, and portal access while you establish residency.</p></div>
-      <div class="step reveal"><h3>First semester of savings</h3><p>Our success fee, due only when you&rsquo;re granted in-state tuition. It is typically 10 to 20% of your total savings. Every semester after that is 100% yours.</p></div>
-    </div>
-    <p class="mt-2" style="font-size:.9rem;color:var(--muted)">Questions about your specific numbers? <a href="/meet" style="color:var(--orange);font-weight:600">Ask us on a free call</a> or read the <a href="/faq" style="color:var(--orange);font-weight:600">FAQs</a>.</p>
-  </div>
-</section>
-
 <!-- Testimonials -->
-<section class="section" id="testimonials">
+<section class="section section--cream" id="testimonials">
   <div class="container">
     <p class="eyebrow">Testimonials</p>
     <h2 class="display">Don&rsquo;t take <em>our</em> word for it</h2>
     <p class="lede">Our families are our best ambassadors. 10 out of 10 recommend us. Discover why we&rsquo;re the top choice for residency reclassification.</p>
+    <div class="quotes">
+      <figure class="quote"><blockquote>&ldquo;Our goal was to get our son instate tuition by the start of Junior year and we did. Jake was very prompt with answering questions and keeping us informed when things were due.&rdquo;</blockquote><figcaption>Aimee, parent</figcaption></figure>
+      <figure class="quote"><blockquote>&ldquo;He knows all the intricacies and was able to take us step by step through the process to make it so seamless! We highly recommend him!&rdquo;</blockquote><figcaption>Jessica</figcaption></figure>
+      <figure class="quote"><blockquote>&ldquo;Jake and InstateMe made obtaining in-state tuition a straightforward and achievable process.&rdquo;</blockquote><figcaption>Alex, student</figcaption></figure>
+    </div>
     <div class="reviews-embed">
   <script type="text/javascript" src="https://testimonial.to/js/iframeResizer.min.js"></script>
   <iframe id="testimonialto-42438543-4854-4cf3-9cee-9288fae039fd" src="https://embed-v2.testimonial.to/w/instateme?id=42438543-4854-4cf3-9cee-9288fae039fd" frameborder="0" scrolling="no" width="100%" title="InstateMe customer reviews"></iframe>
@@ -215,7 +207,7 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
 </section>
 
 <!-- Founder -->
-<section class="section section--cream" id="mission">
+<section class="section" id="mission">
   <div class="container">
     <p class="eyebrow center" style="text-align:center">Mission · Founder's note</p>
     <div class="founder reveal">
@@ -232,14 +224,14 @@ Cal.ns["residency-consultation"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":
 </section>
 
 <!-- FAQ preview -->
-<section class="section" id="faqs">
+<section class="section section--cream" id="faqs">
   <div class="container">
     <p class="eyebrow center" style="text-align:center">FAQs</p>
     <h2 class="display center" style="text-align:center;margin-inline:auto">Let&rsquo;s make this even easier</h2>
     <div class="faq-list">
       <details class="faq-item"><summary>What is InstateMe and how can it help me?</summary><div class="faq-a"><p>InstateMe specializes in guiding students to obtain in-state tuition rates by helping them establish residency in their chosen state. We offer expert support throughout the process, ensuring compliance with state-specific requirements.</p></div></details>
 <details class="faq-item"><summary>What does InstateMe cost?</summary><div class="faq-a"><p>InstateMe charges an initial refundable fee, which covers the comprehensive services we provide to ensure your successful establishment of in-state residency. Upon achieving this status, our fee is 100% of your first semester of savings. This typically represents about 10 to 20% of your total education savings.</p><p>Note that this fee is only applied to your initial semester savings, not the entire duration of your education. Beyond the first semester, you keep every dollar of continued savings with no additional fees from us. Our pricing is transparent and structured to align with the financial benefits we deliver.</p></div></details>
-<details class="faq-item"><summary>Can InstateMe guarantee that I will obtain in-state tuition?</summary><div class="faq-a"><p>No. You should be skeptical of anyone who says otherwise. What we offer instead is a risk-free structure: if you do not qualify for in-state tuition after following our guidance, you do not pay us. So far, 100% of our clients have achieved in-state tuition status.</p></div></details>
+<details class="faq-item"><summary>Can InstateMe guarantee that I will obtain in-state tuition?</summary><div class="faq-a"><p>No. You should be skeptical of anyone who says otherwise. What we offer instead is a risk-free structure: if you do not qualify for in-state tuition after following our guidance, you do not pay us. So far, 100% of our clients outside UT Austin have achieved in-state tuition status. At UT Austin, a recent change to the university's residency policy means some students there are currently receiving denials.</p></div></details>
 <details class="faq-item"><summary>How long does it typically take to establish residency?</summary><div class="faq-a"><p>Most states require a physical presence for at least 12 months. However, the entire process can vary depending on individual circumstances and state requirements.</p></div></details>
     </div>
     <p class="center mt-2" style="text-align:center"><a class="btn btn--ghost" href="/faq">Read all FAQs</a></p>
