@@ -117,6 +117,9 @@
         const cycleStart = i > 0 ? closes[i - 1] : new Date(2026, 0, 28);
         const days = Math.ceil((deadline.getTime() - now.getTime()) / 86400000);
         daysEl.textContent = String(days);
+        const daysWord = document.getElementById('days-word');
+        if (daysWord)
+            daysWord.textContent = days === 1 ? 'day' : 'days';
         if (termEl) {
             const term = census[i].getMonth() < 6 ? 'Spring' : 'Fall';
             termEl.textContent = term + " '" + String(census[i].getFullYear()).slice(-2);

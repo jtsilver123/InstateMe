@@ -60,7 +60,6 @@ strong{font-weight:600}
   text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:600;
   color:var(--orange);margin-bottom:1.2rem;
 }
-.eyebrow--muted{color:var(--muted)}
 .eyebrow a{display:inline-block;padding:6px 0;margin:-6px 0}
 .display{
   font-family:var(--serif);font-weight:500;
@@ -243,10 +242,8 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 /* ---------- Cards / grids ---------- */
 .grid{display:grid;gap:22px;margin-top:2.6rem}
 .grid--3{grid-template-columns:repeat(3,1fr)}
-.grid--2{grid-template-columns:repeat(2,1fr)}
-.grid--4{grid-template-columns:repeat(4,1fr)}
-@media (max-width:960px){.grid--3,.grid--4{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.grid--3,.grid--2,.grid--4{grid-template-columns:1fr}}
+@media (max-width:960px){.grid--3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.grid--3{grid-template-columns:1fr}}
 .card{
   background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;
   transition:transform .2s var(--ease),box-shadow .2s;
@@ -260,7 +257,6 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 }
 .card--link{display:block}
 .card__more{display:inline-block;margin-top:14px;font-weight:600;font-size:.88rem;color:var(--orange)}
-.card--state .card__ic{background:var(--green-soft);color:var(--green)}
 
 /* ---------- Steps ---------- */
 .steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:2.6rem}
@@ -485,7 +481,6 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .prose a.btn{text-decoration:none}
 .prose a.btn--primary,.prose a.btn--primary:hover{color:#fff}
 .prose a.btn--ghost{color:var(--text)}
-.prose .na{font-size:.94rem;color:var(--muted);font-style:italic}
 .prose table .row-total td{background:var(--cream);border-top:2px solid var(--line)}
 
 /* ---------- Article table of contents ---------- */
@@ -571,7 +566,6 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
   .btn-row{gap:10px}
   .btn-row .btn--lg{width:100%}
   .btn-note{text-align:center}
-  .hero__jake{margin-top:1.2rem}
   .stats__cell{padding:18px 10px}
   .press{padding:28px 0}
   .press__row{gap:12px 22px}
