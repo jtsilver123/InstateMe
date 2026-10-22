@@ -85,19 +85,42 @@
         renderCalc();
     }
     /* ---------- Enrollment countdown + progress bar ---------- */
-    // Counts down to the next September 1st, then rolls over to the
-    // following year automatically. The bar fills across the 12-month cycle.
+    // Enrollment runs by semester and closes on the census date: the earlier
+    // of UT Austin's and Texas A&M's for each term. Counts down to the next
+    // census date, labels the term, and fills the bar across the window
+    // since the previous one.
+    //   Fall '26   Sep 9  (UT Sep 9, TAMU Sep 9)
+    //   Spring '27 Jan 27 (UT Jan 27, TAMU Feb 3)
+    //   Fall '27   Sep 8  (UT 12th class day from Aug 23 start; TAMU not yet published)
+    //   Spring '28 Feb 2  (UT 12th class day from Jan 18 start; TAMU not yet published)
+    // Later terms fall back to Jan 27 / Sep 9 — update this list each year.
     const daysEl = document.getElementById('days-left');
     const barEl = document.getElementById('enroll-bar');
+    const termEl = document.getElementById('enroll-term');
     if (daysEl) {
         const now = new Date();
-        let deadline = new Date(now.getFullYear(), 8, 1); // Sep 1 this year, local time
-        if (deadline.getTime() <= now.getTime()) {
-            deadline = new Date(now.getFullYear() + 1, 8, 1);
+        const census = [
+            new Date(2026, 8, 9),
+            new Date(2027, 0, 27),
+            new Date(2027, 8, 8),
+            new Date(2028, 1, 2),
+        ];
+        for (let y = 2028; y <= now.getFullYear() + 1; y++) {
+            census.push(new Date(y, 8, 9), new Date(y + 1, 0, 27));
         }
-        const cycleStart = new Date(deadline.getFullYear() - 1, 8, 1);
+        // Sign-ups stay open through the end of census day (local time).
+        const closes = census.map((d) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1));
+        let i = closes.findIndex((d) => d.getTime() > now.getTime());
+        if (i < 0)
+            i = closes.length - 1;
+        const deadline = closes[i];
+        const cycleStart = i > 0 ? closes[i - 1] : new Date(2026, 0, 28);
         const days = Math.ceil((deadline.getTime() - now.getTime()) / 86400000);
         daysEl.textContent = String(days);
+        if (termEl) {
+            const term = census[i].getMonth() < 6 ? 'Spring' : 'Fall';
+            termEl.textContent = term + " '" + String(census[i].getFullYear()).slice(-2);
+        }
         if (barEl) {
             const total = deadline.getTime() - cycleStart.getTime();
             const elapsed = now.getTime() - cycleStart.getTime();
