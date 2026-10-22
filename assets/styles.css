@@ -136,7 +136,7 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 }
 
 /* ---------- Hero ---------- */
-.hero{padding:clamp(48px,7vw,96px) 0 clamp(56px,8vw,100px);position:relative;overflow:hidden}
+.hero{padding:clamp(32px,4vw,56px) 0 clamp(56px,8vw,100px);position:relative;overflow:hidden}
 .hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,6vw,72px);align-items:center}
 @media (max-width:880px){.hero__grid{grid-template-columns:1fr}}
 .hero .display{max-width:16ch}
@@ -151,6 +151,8 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .stats__cell{background:var(--cream);padding:26px 18px;text-align:center}
 .stats__num{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;color:var(--green)}
 .stats__label{font-size:.82rem;color:var(--muted);margin-top:2px}
+.stats__mark{font-size:.55em;margin-left:1px;vertical-align:super;line-height:0}
+.stats__note{max-width:var(--maxw);margin:0 auto;padding:10px 18px 12px;text-align:center;font-size:.78rem;color:var(--muted)}
 .stats__grid--3{grid-template-columns:repeat(3,1fr)}
 .stats__grid--2{grid-template-columns:repeat(2,1fr)}
 @media (max-width:720px){.stats__grid,.stats__grid--3{grid-template-columns:repeat(2,1fr)}.stats__grid--2{grid-template-columns:repeat(2,1fr)}}
