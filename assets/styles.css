@@ -112,7 +112,15 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .nav__links a:hover,.nav__links a[aria-current="page"]{color:var(--text)}
 .nav__links a.btn--primary,.nav__links a.btn--primary:hover{color:#fff}
 .nav__cta{margin-left:8px}
-.nav__book{display:none}
+.nav__cta--buy{margin-left:0}
+/* Start Saving: the one filled button in the nav, pinned far right. */
+.btn--buy{box-shadow:0 8px 20px -8px rgba(200,90,41,.7),inset 0 0 0 1px rgba(255,255,255,.08)}
+.btn--buy:hover{box-shadow:0 10px 24px -8px rgba(200,90,41,.8)}
+.btn__arrow{display:inline-block;transition:transform .18s var(--ease)}
+.btn--buy:hover .btn__arrow{transform:translateX(3px)}
+.nav__links a.btn--ghost{color:var(--text)}
+.nav__links a.btn--ghost:hover{color:var(--orange)}
+.nav__buy{display:none}
 .nav__toggle{
   display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px;
 }
@@ -121,7 +129,7 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
 .nav__toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
 .nav__toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 @media (max-width:880px){
-  .nav__book{display:inline-flex;margin-left:auto;font-size:.85rem;padding:.6em 1.1em}
+  .nav__buy{display:inline-flex;margin-left:auto;font-size:.88rem;padding:.65em 1.25em}
   .nav__toggle{display:block;margin-left:0}
   .nav__links{
     position:absolute;top:100%;left:0;right:0;
@@ -133,6 +141,7 @@ h2.display{font-size:clamp(1.8rem,4.2vw,2.7rem)}
   .nav__links li{width:100%}
   .nav__links a{display:block;padding:12px 0;font-size:1.05rem}
   .nav__cta{margin:10px 0 0}
+  .nav__links a.btn{display:flex;padding:.85em 1.5em}
 }
 
 /* ---------- Hero ---------- */
