@@ -311,7 +311,7 @@
                 if (months < 1)
                     label = '< 1 month';
                 else if (months <= 24)
-                    label = '≈ ' + Math.round(months) + ' months';
+                    label = '≈ ' + Math.round(months) + (Math.round(months) === 1 ? ' month' : ' months');
                 else
                     label = '≈ ' + (months / 12).toFixed(1) + ' years';
                 out.paybackNum.textContent = label;
